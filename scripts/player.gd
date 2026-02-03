@@ -89,3 +89,7 @@ func _update_temp_bar() -> void:
 func _on_cold_timer_timeout() -> void:
 	print("cold tick:", temp)
 	remove_temp(cold_damage)
+
+
+func _on_ice_zone_body_entered(body: Node2D) -> void:
+	print("coucou from icebox in player")

@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bgsayaavql3r3" path="res://Scene/beer.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bcq3pepm2lbb5" path="res://assets/Tilemap/tilemap_packed.png" id="5_ihreq"]
-[ext_resource type="PackedScene" uid="uid://b0dgdi0rw8j5j" path="res://Scene/IceZone.tscn" id="6_h8jt7"]
-[ext_resource type="PackedScene" uid="uid://bw7cy6vki1f1k" path="res://Scene/chasseur.tscn" id="6_thj8p"]
+[ext_resource type="PackedScene" uid="uid://570td45f3mx2" path="res://Scene/IceZone.tscn" id="6_h8jt7"]
+[ext_resource type="PackedScene" path="res://Scene/chasseur.tscn" id="6_thj8p"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 distance = -94.0
@@ -255,6 +255,6 @@ offset_bottom = 27.0
 value = 100.0
 
 [node name="IceZone" parent="." instance=ExtResource("6_h8jt7")]
-position = Vector2(243, 99.99999)
+position = Vector2(243, 25.999985)
 
 [connection signal="timeout" from="Player/ColdTimer" to="Player" method="_on_cold_timer_timeout"]
