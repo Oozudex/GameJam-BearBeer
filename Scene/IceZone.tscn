@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0dgdi0rw8j5j"]
+
+[ext_resource type="Script" uid="uid://8hme68t06ea" path="res://scripts/ice_zone.gd" id="1_a2yvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2yvp"]
+size = Vector2(76, 20)
+
+[node name="IceZone" type="Area2D"]
+scale = Vector2(1.9110022, 3.96)
+collision_layer = 2
+script = ExtResource("1_a2yvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16.5, 0)
+shape = SubResource("RectangleShape2D_a2yvp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

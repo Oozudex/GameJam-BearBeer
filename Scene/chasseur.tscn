@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw7cy6vki1f1k"]
+
+[ext_resource type="Script" uid="uid://b7jhtq1jqppwv" path="res://scripts/chasseur.gd" id="1_os35l"]
+[ext_resource type="Texture2D" uid="uid://beifrviwaujax" path="res://assets/animations/anim_chasseur.png" id="1_wf06l"]
+[ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="2_os35l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2e6w"]
+atlas = ExtResource("1_wf06l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdtgn"]
+atlas = ExtResource("1_wf06l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6b22h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2e6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdtgn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d8nun"]
+radius = 7.0
+height = 32.0
+
+[node name="Chasseur" type="Node2D"]
+script = ExtResource("1_os35l")
+
+[node name="RayCastL" type="RayCast2D" parent="."]
+position = Vector2(-8, 9.999999)
+rotation = -0.110444985
+target_position = Vector2(-10.932979, -1.2124262)
+
+[node name="RayCastR" type="RayCast2D" parent="."]
+position = Vector2(3, 10)
+target_position = Vector2(10, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_6b22h")
+autoplay = "default"
+frame = 1
+frame_progress = 0.99197894
+
+[node name="Killzone" parent="." instance=ExtResource("2_os35l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_d8nun")
