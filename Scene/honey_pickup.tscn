@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb7vf4d1li1v0"]
+
+[ext_resource type="Script" uid="uid://dlodkfm5jxm28" path="res://scripts/honey_pickup.gd" id="1_l43j2"]
+[ext_resource type="Texture2D" uid="uid://bk1cx481qxmkj" path="res://assets/miel.png" id="1_q7en8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l43j2"]
+
+[node name="HoneyPickup" type="Area2D"]
+script = ExtResource("1_l43j2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q7en8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l43j2")
