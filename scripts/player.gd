@@ -19,6 +19,8 @@ var temp: int = 100               # <-- plus exporté
 var alc: int = 0
 
 var is_dead: bool = false
+var controls_inverted: bool = false
+var forest_warning_shown: bool = false
 
 # Glissade sur la glace
 @export var accel: float = 900.0
@@ -51,10 +53,10 @@ func set_meter_mode(new_mode: MeterMode) -> void:
 	meter_mode = new_mode
 
 	if meter_mode == MeterMode.ALCOHOL:
-		alc = alc_max  # 100% direct en entrant dans la forêt
+		alc = alc_max  # 100% direct en forêt
 
 	_update_meter_ui()
-
+	update_drunk_state()
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -70,6 +72,9 @@ func _physics_process(delta: float) -> void:
 
 	# Horizontal movement
 	var direction := Input.get_axis("ui_left", "ui_right")
+
+	if controls_inverted:
+		direction *= -1
 
 	# Flip seulement quand le joueur appuie
 	if direction > 0:
@@ -127,6 +132,14 @@ func _update_temp_bar() -> void:
 	if temperature_ui and temperature_ui.has_method("set_value"):
 		temperature_ui.set_value(temp, temp_max)
 
+
+func update_drunk_state() -> void:
+	# Inversion UNIQUEMENT en forêt quand alcool = 100%
+	if meter_mode == MeterMode.ALCOHOL and alc >= alc_max:
+		controls_inverted = true
+	else:
+		controls_inverted = false
+
 func drink_beer(amount: int) -> void:
 	# banquise: réchauffe
 	if meter_mode == MeterMode.COLD:
@@ -141,6 +154,7 @@ func eat_food(amount: int) -> void:
 	if meter_mode == MeterMode.ALCOHOL:
 		alc = clamp(alc - amount, 0, alc_max)
 		_update_meter_ui()
+		update_drunk_state()
 
 func set_ice_control(value: float) -> void:
 	ice_control = value

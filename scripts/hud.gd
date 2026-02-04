@@ -19,10 +19,12 @@ func _ready() -> void:
 	message_label.visible = false
 	message_timer.timeout.connect(_on_message_timer_timeout)
 
-func show_message(text: String) -> void:
+func show_message(text: String, duration: float = 4.0) -> void:
 	message_label.text = text
 	message_label.visible = true
+	message_timer.wait_time = duration
 	message_timer.start()
+
 
 func _on_message_timer_timeout() -> void:
 	message_label.visible = false
