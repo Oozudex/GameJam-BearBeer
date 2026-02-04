@@ -1,0 +1,155 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhov70i5uxr83"]
+
+[ext_resource type="Script" uid="uid://b0d76qy33pa1x" path="res://scripts/win_ticket.gd" id="1_et5qs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp73n"]
+bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_et5qs"]
+bg_color = Color(0.6459003, 0.6459003, 0.6459003, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tcy5x"]
+bg_color = Color(0.76494396, 0.76494396, 0.7649439, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4tosi"]
+
+[node name="WinTicket" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_et5qs")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.7607843, 0.78431374, 0.07450981, 0.5529412)
+
+[node name="Center" type="Control" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/Center"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -159.0
+offset_right = 20.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TicketLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -121.0
+offset_right = 69.5
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ticket d’or validé !"
+
+[node name="CodeLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SubtitelLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -83.0
+offset_right = 20.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = 84.0
+offset_right = 201.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RetryButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_sp73n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_et5qs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tcy5x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4tosi")
+text = "Réessayer"
+
+[node name="MenuButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_sp73n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_et5qs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tcy5x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4tosi")
+text = "Menu principal"
+
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/MenuButton" to="." method="_on_menu_button_pressed"]

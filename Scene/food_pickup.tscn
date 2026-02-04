@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq58mr0t1n568"]
+
+[ext_resource type="Script" uid="uid://gbbkqbe3u6jy" path="res://scripts/food_pickup.gd" id="1_getcg"]
+[ext_resource type="Texture2D" uid="uid://1dq6krhc35d5" path="res://assets/Poisson 2.png" id="1_ugyda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_getcg"]
+
+[node name="FoodPickup" type="Area2D"]
+script = ExtResource("1_getcg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ugyda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_getcg")

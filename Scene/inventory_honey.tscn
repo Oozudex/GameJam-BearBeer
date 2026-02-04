@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cueektpecd8pq"]
+
+[ext_resource type="Texture2D" uid="uid://5ar3qyxbhvvd" path="res://assets/inventaire_miel.png" id="1_77f83"]
+[ext_resource type="Script" uid="uid://bku4r0xirtq4i" path="res://scripts/inventory_honey.gd" id="2_sywle"]
+
+[node name="Inventory_honey" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 52.0
+script = ExtResource("2_sywle")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_77f83")
+
+[node name="CountLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_right = -3.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "0/5"
+horizontal_alignment = 2

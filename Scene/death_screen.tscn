@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://c83ktepmn1uxo"]
+
+[ext_resource type="Script" uid="uid://ck32mi7tgxw77" path="res://scripts/death_screen.gd" id="1_elwbp"]
+[ext_resource type="Texture2D" uid="uid://bgg0rdv4u1pfq" path="res://assets/gameover.png" id="2_ru38t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru38t"]
+bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrxm1"]
+bg_color = Color(0.6459003, 0.6459003, 0.6459003, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7ajj"]
+bg_color = Color(0.76494396, 0.76494396, 0.7649439, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwomx"]
+
+[node name="DeathScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_elwbp")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.87734634, 3.8745256e-06, 1.2513996e-06, 0.49411765)
+
+[node name="TextureRect" type="TextureRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -368.0
+offset_top = -158.0
+offset_right = 823.0
+offset_bottom = 1526.0
+grow_horizontal = 2
+scale = Vector2(0.64624745, 0.55768406)
+texture = ExtResource("2_ru38t")
+
+[node name="Center" type="Control" parent="Overlay"]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = 17.0
+offset_right = 250.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.0
+offset_top = -96.5
+offset_right = 201.0
+offset_bottom = 96.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RetryButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ru38t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rrxm1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e7ajj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hwomx")
+text = "Réessayer"
+
+[node name="MenuButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ru38t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rrxm1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e7ajj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hwomx")
+text = "Menu principal"
+
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/MenuButton" to="." method="_on_menu_button_pressed"]

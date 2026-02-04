@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci7qrvjk3wbf8"]
+
+[ext_resource type="Script" uid="uid://dk1b7mm38gq6x" path="res://scripts/temperature_ui.gd" id="1_cqwt1"]
+[ext_resource type="Texture2D" uid="uid://bhmocibmd7g6y" path="res://assets/barre temp.png" id="1_mqgaa"]
+[ext_resource type="Texture2D" uid="uid://cfhiq2a12b5b0" path="res://assets/temp.png" id="2_cqwt1"]
+[ext_resource type="Texture2D" uid="uid://cc6gh8akaksxt" path="res://assets/bieres textures.png" id="3_swbra"]
+
+[node name="TemperatureUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 254.0
+offset_bottom = 40.0
+script = ExtResource("1_cqwt1")
+bar_path = NodePath("HBoxContainer/TempBar")
+label_path = NodePath("HBoxContainer/PanelContainer/TempLabel")
+cold_progress_texture = ExtResource("2_cqwt1")
+alcohol_progress_texture = ExtResource("3_swbra")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="TempLabel" type="Label" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "0/100"
+horizontal_alignment = 1
+
+[node name="TempBar" type="TextureProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+texture_under = ExtResource("1_mqgaa")
+texture_progress = ExtResource("2_cqwt1")

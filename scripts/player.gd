@@ -8,11 +8,15 @@ const JUMP_VELOCITY = -300.0
 # -----------------------------
 # Temperature system (Banquise)
 # -----------------------------
+enum MeterMode { COLD, ALCOHOL }
+var meter_mode: MeterMode = MeterMode.COLD
+
 @export var temp_max: int = 100
 @export var cold_damage: int = 10  # perte de température
 var temp: int = 100               # <-- plus exporté
 
-@onready var temp_bar: ProgressBar = $"../HUD/HBoxContainer/TempBar"
+@export var alc_max: int = 100
+var alc: int = 0
 
 var is_dead: bool = false
 
@@ -21,12 +25,35 @@ var is_dead: bool = false
 @export var decel: float = 1100.0
 var ice_control: float = 1.0
 
+@export var temperature_ui: Node
 
 
 func _ready() -> void:
-	# Toujours démarrer à fond
 	temp = temp_max
-	_update_temp_bar()
+	call_deferred("_update_temp_bar")
+
+func _update_meter_ui() -> void:
+	if not temperature_ui:
+		return
+
+	if meter_mode == MeterMode.COLD:
+		if temperature_ui.has_method("set_mode"):
+			temperature_ui.set_mode("COLD")
+		if temperature_ui.has_method("set_value"):
+			temperature_ui.set_value(temp, temp_max)
+	else:
+		if temperature_ui.has_method("set_mode"):
+			temperature_ui.set_mode("ALCOHOL")
+		if temperature_ui.has_method("set_value"):
+			temperature_ui.set_value(alc, alc_max)
+
+func set_meter_mode(new_mode: MeterMode) -> void:
+	meter_mode = new_mode
+
+	if meter_mode == MeterMode.ALCOHOL:
+		alc = alc_max  # 100% direct en entrant dans la forêt
+
+	_update_meter_ui()
 
 
 func _physics_process(delta: float) -> void:
@@ -87,19 +114,33 @@ func die() -> void:
 	is_dead = true
 
 	GameState.lose_life()
-	GameState.reset_level_only()
 
 	if GameState.is_game_over():
-		get_tree().call_deferred("change_scene_to_file", "res://Scene/main_menu.tscn")
+		var death_screen = preload("res://Scene/death_screen.tscn").instantiate()
+		get_tree().current_scene.add_child(death_screen)
 	else:
+		GameState.reset_level_only()
 		get_tree().call_deferred("reload_current_scene")
 
 
-
 func _update_temp_bar() -> void:
-	if temp_bar:
-		temp_bar.max_value = temp_max
-		temp_bar.value = temp
+	if temperature_ui and temperature_ui.has_method("set_value"):
+		temperature_ui.set_value(temp, temp_max)
+
+func drink_beer(amount: int) -> void:
+	# banquise: réchauffe
+	if meter_mode == MeterMode.COLD:
+		add_temp(amount)
+	else:
+		# forêt: augmente l'alcoolémie
+		alc = clamp(alc + amount, 0, alc_max)
+		_update_meter_ui()
+
+func eat_food(amount: int) -> void:
+	# forêt: diminue l'alcoolémie
+	if meter_mode == MeterMode.ALCOHOL:
+		alc = clamp(alc - amount, 0, alc_max)
+		_update_meter_ui()
 
 func set_ice_control(value: float) -> void:
 	ice_control = value
@@ -109,5 +150,5 @@ func set_ice_control(value: float) -> void:
 # Timer signal (ColdTimer -> timeout())
 # ----------------------------------------
 func _on_cold_timer_timeout() -> void:
-	print("cold tick:", temp)
-	remove_temp(cold_damage)
+	if meter_mode == MeterMode.COLD:
+		remove_temp(cold_damage)

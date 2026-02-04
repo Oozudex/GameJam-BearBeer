@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://duyymudnfc2yg"]
+
+[ext_resource type="Script" uid="uid://cebyfe80btm88" path="res://scripts/win_normal.gd" id="1_2vu1j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1rbv"]
+bg_color = Color(11.708403, 11.708403, 11.708403, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vu1j"]
+bg_color = Color(0.6459003, 0.6459003, 0.6459003, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65fjl"]
+bg_color = Color(0.76494396, 0.76494396, 0.7649439, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s71t5"]
+
+[node name="WinNormal" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_2vu1j")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.7607843, 0.78431374, 0.07450981, 0.5529412)
+
+[node name="Center" type="Control" parent="Overlay"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/Center"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SubtitelLabel" type="Label" parent="Overlay/Center"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Overlay/Center"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 355.0
+offset_top = 372.0
+offset_right = 757.0
+offset_bottom = 565.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RetryButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1rbv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2vu1j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_65fjl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s71t5")
+text = "Réessayer"
+
+[node name="MenuButton" type="Button" parent="Overlay/Center/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_r1rbv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2vu1j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_65fjl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s71t5")
+text = "Menu principal"
+
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Overlay/Center/VBoxContainer2/MenuButton" to="." method="_on_menu_button_pressed"]
