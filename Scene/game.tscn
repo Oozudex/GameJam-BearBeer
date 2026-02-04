@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://wyxg1ej3hl5r"]
+[gd_scene load_steps=13 format=4 uid="uid://wyxg1ej3hl5r"]
 
 [ext_resource type="PackedScene" uid="uid://cn8pkp0to3nt3" path="res://Scene/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bgsayaavql3r3" path="res://Scene/beer.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://dl62umvsbhmh5" path="res://scripts/hearts.gd" id="4_8f6ah"]
 [ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://cs14bs37i4bjf" path="res://scripts/hud.gd" id="5_h8jt7"]
 [ext_resource type="Texture2D" uid="uid://bcq3pepm2lbb5" path="res://assets/Tilemap/tilemap_packed.png" id="5_ihreq"]
-[ext_resource type="PackedScene" uid="uid://570td45f3mx2" path="res://Scene/IceZone.tscn" id="6_h8jt7"]
-[ext_resource type="PackedScene" path="res://Scene/chasseur.tscn" id="6_thj8p"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
-distance = -94.0
+[ext_resource type="PackedScene" uid="uid://b0dgdi0rw8j5j" path="res://Scene/IceZone.tscn" id="6_h8jt7"]
+[ext_resource type="PackedScene" uid="uid://bw7cy6vki1f1k" path="res://Scene/chasseur.tscn" id="6_thj8p"]
+[ext_resource type="PackedScene" uid="uid://cb7vf4d1li1v0" path="res://Scene/honey_pickup.tscn" id="8_sagxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_thj8p"]
 texture = ExtResource("5_ihreq")
@@ -211,6 +211,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_thj8p")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+distance = -94.0
+
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
@@ -230,15 +233,6 @@ autostart = true
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 
-[node name="Beer" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(148, 176)
-
-[node name="Killzone" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(112, 177)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-shape = SubResource("WorldBoundaryShape2D_iywne")
-
 [node name="Chasseur" parent="." instance=ExtResource("6_thj8p")]
 position = Vector2(209, 176)
 
@@ -247,14 +241,55 @@ position = Vector2(-4, 1)
 tile_map_data = PackedByteArray("AAAGAAwAAAABAAQAAAAHAAwAAAACAAQAAAAIAAwAAAADAAQAAAAJAAwAAAABAAQAAAAKAAwAAAACAAQAAAALAAwAAAADAAQAAAAMAAwAAAABAAQAAAANAAwAAAACAAQAAAAOAAwAAAADAAQAAAAPAAwAAAABAAQAAAAQAAwAAAACAAQAAAARAAwAAAADAAQAAAASAAwAAAABAAQAAAATAAwAAAACAAQAAAAUAAwAAAADAAQAAAAVAAwAAAABAAQAAAAWAAwAAAACAAQAAAAXAAwAAAADAAQAAAALAAsAAAABAAQAAAAXAAsAAAABAAQAAAANAAkAAAABAAQAAAAOAAkAAAACAAQAAAAPAAkAAAADAAQAAAAQAAkAAAABAAQAAAARAAkAAAACAAQAAAASAAkAAAADAAQAAAATAAkAAAABAAQAAAAUAAkAAAACAAQAAAAVAAkAAAADAAQAAAA=")
 tile_set = SubResource("TileSet_h8jt7")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Hearts" type="CanvasLayer" parent="."]
+script = ExtResource("4_8f6ah")
 
-[node name="TempBar" type="ProgressBar" parent="CanvasLayer"]
-offset_right = 200.0
-offset_bottom = 27.0
+[node name="HeartsLabel" type="Label" parent="Hearts"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_h8jt7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -40.0
+offset_right = 154.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TempBar" type="ProgressBar" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 value = 100.0
 
+[node name="TicketLabel" type="Label" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HoneyLabel" type="Label" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
 [node name="IceZone" parent="." instance=ExtResource("6_h8jt7")]
-position = Vector2(243, 25.999985)
+position = Vector2(275, 114.99999)
+
+[node name="Beer" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(145, 173)
+
+[node name="HoneyPickup" parent="." instance=ExtResource("8_sagxc")]
+position = Vector2(332, 130)
+
+[node name="Killzone" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(112, 177)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_iywne")
 
 [connection signal="timeout" from="Player/ColdTimer" to="Player" method="_on_cold_timer_timeout"]
