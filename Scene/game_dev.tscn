@@ -571,7 +571,7 @@ texture = ExtResource("41_lr58w")
 
 [node name="Player" parent="." node_paths=PackedStringArray("temperature_ui") instance=ExtResource("5_crvqk")]
 light_mask = 2
-position = Vector2(5528, -33)
+position = Vector2(5.000002, -2)
 scale = Vector2(1.5199995, 1.5199995)
 temperature_ui = NodePath("../HUD/Root/Panel/HBoxContainer/TemperatureUI")
 
