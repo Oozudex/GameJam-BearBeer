@@ -4,7 +4,7 @@ extends CharacterBody2D
 # PARAMÈTRES
 # -----------------------------
 @export var speed: float = 80.0
-@export var patrol_distance: float = 160.0  # distance totale en pixels
+@export var patrol_distance: float = 100.0  # distance totale en pixels
 @export var bob_amplitude: float = 8.0       # mouvement vertical (vol)
 @export var bob_speed: float = 3.0
 

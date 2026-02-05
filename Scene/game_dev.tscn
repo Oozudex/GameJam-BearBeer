@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cvysdv60nwq0v"]
+[gd_scene load_steps=95 format=3 uid="uid://cvysdv60nwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://3dosof7q5n0i" path="res://assets/Tilemap/plateforme bas.png" id="1_aq2kk"]
 [ext_resource type="Texture2D" uid="uid://bjdej1ty16al5" path="res://assets/Tilemap/banquise.png" id="1_fwfla"]
@@ -54,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dgdi0rw8j5j" path="res://Scene/IceZone.tscn" id="52_gf8to"]
 [ext_resource type="PackedScene" uid="uid://cb7vf4d1li1v0" path="res://Scene/honey_pickup.tscn" id="53_6r2jl"]
 [ext_resource type="PackedScene" uid="uid://cq58mr0t1n568" path="res://Scene/food_pickup.tscn" id="54_pvami"]
+[ext_resource type="PackedScene" uid="uid://defhnflcch1or" path="res://Scene/bee.tscn" id="55_u8p4b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k6h6g"]
 texture = ExtResource("1_aq2kk")
@@ -770,5 +771,23 @@ position = Vector2(7354, -114)
 
 [node name="FoodPickup6" parent="." instance=ExtResource("54_pvami")]
 position = Vector2(6936, -340)
+
+[node name="Bee" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(8843, 98)
+
+[node name="Bee2" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(8070, 304)
+
+[node name="Bee3" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(7474, 156)
+
+[node name="Bee4" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(6988, -65)
+
+[node name="Bee5" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(5942, -289)
+
+[node name="Bee6" parent="." instance=ExtResource("55_u8p4b")]
+position = Vector2(7296, -163)
 
 [connection signal="timeout" from="Player/ColdTimer" to="Player" method="_on_cold_timer_timeout"]
