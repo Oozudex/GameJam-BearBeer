@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgg0rdv4u1pfq"
-path="res://.godot/imported/gameover.png-c20bb5b762e8f9ad6dcf84fb1b814deb.ctex"
+uid="uid://26joopaex15u"
+path="res://.godot/imported/perdu.jpg-b3b310af02061f8196144990d42d12cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gameover.png"
-dest_files=["res://.godot/imported/gameover.png-c20bb5b762e8f9ad6dcf84fb1b814deb.ctex"]
+source_file="res://assets/perdu.jpg"
+dest_files=["res://.godot/imported/perdu.jpg-b3b310af02061f8196144990d42d12cf.ctex"]
 
 [params]
 
