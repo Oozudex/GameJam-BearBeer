@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpvmy688ywsje"]
+
+[ext_resource type="Script" uid="uid://bsg818v1lvwif" path="res://scripts/music_player.gd" id="1_j1fcx"]
+[ext_resource type="AudioStream" uid="uid://thrk3unxbdt0" path="res://audio/bande son BearBeer.mp3" id="1_yupbq"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_j1fcx")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_yupbq")
+volume_db = -15.0
+autoplay = true

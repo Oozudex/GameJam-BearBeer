@@ -113,5 +113,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_jix8l")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 619.0
+offset_right = 1017.0
+offset_bottom = 642.0
+text = "* L'abus d'alcool est dangereux pour la santé, à consommer avec modération (si vous avez la chance de le croiser)"
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]

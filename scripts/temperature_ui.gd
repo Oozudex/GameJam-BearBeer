@@ -9,6 +9,7 @@ extends Control
 @export var cold_progress_texture: Texture2D
 @export var alcohol_progress_texture: Texture2D
 
+
 func set_mode(mode: String) -> void:
 	if mode == "COLD":
 		if cold_progress_texture:

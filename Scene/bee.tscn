@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://defhnflcch1or"]
+
+[ext_resource type="Script" uid="uid://bvyh7hy5gt3yp" path="res://scripts/bee.gd" id="1_jcx3p"]
+[ext_resource type="Texture2D" uid="uid://c0maa3c3b4kad" path="res://assets/animations/anim_abeille.png" id="2_jcx3p"]
+[ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="3_3ptbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4qyn"]
+atlas = ExtResource("2_jcx3p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ptbi"]
+atlas = ExtResource("2_jcx3p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbcp3"]
+atlas = ExtResource("2_jcx3p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vo4et"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4qyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ptbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbcp3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcx3p"]
+
+[node name="Bee" type="CharacterBody2D"]
+script = ExtResource("1_jcx3p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_vo4et")
+autoplay = "default"
+frame_progress = 0.0037310203
+
+[node name="Killzone" parent="." instance=ExtResource("3_3ptbi")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-1, -4)
+shape = SubResource("CircleShape2D_jcx3p")

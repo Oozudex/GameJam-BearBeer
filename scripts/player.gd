@@ -32,6 +32,7 @@ var drunk_t: float = 0.0
 
 @export var temperature_ui: Node
 @onready var camera: Camera2D = $Camera2D
+@onready var jump_sfx: AudioStreamPlayer2D = $JumpSFX
 
 func _ready() -> void:
 	temp = temp_max
@@ -72,6 +73,8 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		if jump_sfx:
+			jump_sfx.play()
 
 	# Horizontal movement
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -95,6 +98,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, target_speed, a * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, d * delta)
+
+	if direction > 0:
+		animated_sprite_2d.flip_h = false
+	elif direction < 0:
+		animated_sprite_2d.flip_h = true
+
+	# Animation marche
+	if direction != 0:
+		if animated_sprite_2d.animation != "walk":
+			animated_sprite_2d.play("walk")
+	else:
+		animated_sprite_2d.stop()
+		animated_sprite_2d.frame = 0
+
+	# Animation marche basée sur la vitesse (pas sur l'input)
+	if abs(velocity.x) > 5.0:
+		if animated_sprite_2d.animation != "walk":
+			animated_sprite_2d.play("walk")
+	else:
+		animated_sprite_2d.stop()
+		animated_sprite_2d.frame = 0
+
 
 	move_and_slide()
 
