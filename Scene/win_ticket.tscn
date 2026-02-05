@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhov70i5uxr83"]
 
 [ext_resource type="Script" uid="uid://b0d76qy33pa1x" path="res://scripts/win_ticket.gd" id="1_et5qs"]
-[ext_resource type="Texture2D" uid="uid://dqqb56nobxk22" path="res://assets/victoire_legendaire.png" id="2_tcy5x"]
+[ext_resource type="Texture2D" uid="uid://dm3od6js12w0e" path="res://assets/victoire_legendaire_bg.jpg" id="2_tcy5x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp73n"]
 bg_color = Color(11.708403, 11.708403, 11.708403, 1)
@@ -65,46 +65,12 @@ offset_bottom = 772.0
 scale = Vector2(0.61059266, 0.61059266)
 texture = ExtResource("2_tcy5x")
 
-[node name="TitleLabel" type="Label" parent="Overlay/Center"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -461.0
-offset_top = -135.0
-offset_right = 459.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "Tu as trouvé tous les pots de miel, survécu au froid, à la forêt… 
-et mis la patte sur le Ticket d’Or."
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CodeLabel" type="Label" parent="Overlay/Center"]
 layout_mode = 0
 offset_left = -113.0
-offset_top = 19.0
+offset_top = 111.0
 offset_right = -73.0
-offset_bottom = 42.0
-
-[node name="SubtitelLabel" type="Label" parent="Overlay/Center"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = -40.0
-offset_right = 23.0
-offset_bottom = -17.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Bravo !!! Tu as gagné un  pinte gratuite chez notre partenaire Station35"
+offset_bottom = 134.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Overlay/Center"]
 layout_mode = 1
@@ -113,12 +79,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = 84.0
-offset_right = 201.0
-offset_bottom = 277.0
+offset_left = -175.0
+offset_top = 145.0
+offset_right = 227.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8379611, 0.8379611)
 theme_override_constants/separation = 20
 
 [node name="RetryButton" type="Button" parent="Overlay/Center/VBoxContainer2"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://defhnflcch1or"]
+[gd_scene load_steps=10 format=3 uid="uid://defhnflcch1or"]
 
 [ext_resource type="Script" uid="uid://bvyh7hy5gt3yp" path="res://scripts/bee.gd" id="1_jcx3p"]
 [ext_resource type="Texture2D" uid="uid://c0maa3c3b4kad" path="res://assets/animations/anim_abeille.png" id="2_jcx3p"]
 [ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="3_3ptbi"]
+[ext_resource type="AudioStream" uid="uid://4u0fg467eoxh" path="res://audio/delon_boomkin-bee-landing-on-flower-374609.mp3" id="4_l4qyn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4qyn"]
 atlas = ExtResource("2_jcx3p")
@@ -49,3 +50,8 @@ frame_progress = 0.0037310203
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(-1, -4)
 shape = SubResource("CircleShape2D_jcx3p")
+
+[node name="BuzzSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l4qyn")
+volume_db = -10.0
+max_distance = 1.0

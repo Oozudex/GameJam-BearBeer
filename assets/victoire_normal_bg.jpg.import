@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqqb56nobxk22"
-path="res://.godot/imported/victoire_legendaire.png-0b76a91430a99e02c9860c15402c2145.ctex"
+uid="uid://dasr3al6qaq00"
+path="res://.godot/imported/victoire_normal_bg.jpg-9ce73cdb96a54cde06aff9ff4697e5e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/victoire_legendaire.png"
-dest_files=["res://.godot/imported/victoire_legendaire.png-0b76a91430a99e02c9860c15402c2145.ctex"]
+source_file="res://assets/victoire_normal_bg.jpg"
+dest_files=["res://.godot/imported/victoire_normal_bg.jpg-9ce73cdb96a54cde06aff9ff4697e5e6.ctex"]
 
 [params]
 
