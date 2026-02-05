@@ -9,4 +9,3 @@ script = ExtResource("1_j1fcx")
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_yupbq")
 volume_db = -15.0
-autoplay = true

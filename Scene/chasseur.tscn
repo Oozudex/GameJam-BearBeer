@@ -27,20 +27,20 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d8nun"]
-radius = 7.0
+radius = 11.0
 height = 32.0
 
 [node name="Chasseur" type="Node2D"]
 script = ExtResource("1_os35l")
 
 [node name="RayCastL" type="RayCast2D" parent="."]
-position = Vector2(-8, 9.999999)
+position = Vector2(-0.9999999, 12)
 rotation = -0.110444985
-target_position = Vector2(-10.932979, -1.2124262)
+target_position = Vector2(-9.939072, -1.1022053)
 
 [node name="RayCastR" type="RayCast2D" parent="."]
-position = Vector2(3, 10)
-target_position = Vector2(10, 0)
+position = Vector2(-2, 12)
+target_position = Vector2(9, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 0)
