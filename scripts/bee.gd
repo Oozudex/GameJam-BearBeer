@@ -36,9 +36,7 @@ func _ready() -> void:
 
 	# Récupère le player une fois
 	player = get_tree().current_scene.find_child("Player", true, false) as Node2D
-	print("BEE READY | player=", player, " buzz_sfx=", buzz_sfx)
 	
-	print("BUZZ STREAM =", buzz_sfx.stream)
 	buzz_sfx.volume_db = 0
 	buzz_sfx.max_distance = 100000
 	buzz_sfx.attenuation = 0.0

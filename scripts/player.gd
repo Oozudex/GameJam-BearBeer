@@ -37,6 +37,13 @@ var drunk_t: float = 0.0
 func _ready() -> void:
 	temp = temp_max
 	call_deferred("_update_temp_bar")
+	
+	print("HAS walk ?", animated_sprite_2d.sprite_frames.has_animation("walk"))
+	animated_sprite_2d.play("walk")
+	
+	print("AnimatedSprite2D path =", animated_sprite_2d.get_path())
+	print("Frames count =", animated_sprite_2d.sprite_frames.get_frame_count("walk"))
+	print("FPS =", animated_sprite_2d.sprite_frames.get_animation_speed("walk"))
 
 func _update_meter_ui() -> void:
 	if not temperature_ui:
@@ -105,22 +112,15 @@ func _physics_process(delta: float) -> void:
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 
-	# Animation marche
-	if direction != 0:
-		if animated_sprite_2d.animation != "walk":
-			animated_sprite_2d.play("walk")
-	else:
-		animated_sprite_2d.stop()
-		animated_sprite_2d.frame = 0
-
-	# Animation marche basée sur la vitesse (pas sur l'input)
+# -----------------------------
+# ANIMATION MARCHE
+# -----------------------------
 	if abs(velocity.x) > 5.0:
 		if animated_sprite_2d.animation != "walk":
 			animated_sprite_2d.play("walk")
 	else:
 		animated_sprite_2d.stop()
 		animated_sprite_2d.frame = 0
-
 
 	move_and_slide()
 
@@ -243,7 +243,7 @@ func _apply_drunk_camera(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_apply_drunk_camera(delta)
-
+	animated_sprite_2d.play("walk")
 
 # ----------------------------------------
 # Timer signal (ColdTimer -> timeout())
