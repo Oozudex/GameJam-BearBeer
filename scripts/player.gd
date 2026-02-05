@@ -27,8 +27,11 @@ var forest_warning_shown: bool = false
 @export var decel: float = 1100.0
 var ice_control: float = 1.0
 
-@export var temperature_ui: Node
+var drunk_active: bool = false
+var drunk_t: float = 0.0
 
+@export var temperature_ui: Node
+@onready var camera: Camera2D = $Camera2D
 
 func _ready() -> void:
 	temp = temp_max
@@ -132,13 +135,30 @@ func _update_temp_bar() -> void:
 	if temperature_ui and temperature_ui.has_method("set_value"):
 		temperature_ui.set_value(temp, temp_max)
 
+func get_drunk_intensity() -> float:
+	if meter_mode != MeterMode.ALCOHOL:
+		return 0.0
+
+	var percent := float(alc) / float(alc_max) * 100.0
+
+	if percent < 40.0:
+		return 0.0
+	elif percent < 70.0:
+		# 40 → 70 : 0 → 0.5
+		return (percent - 40.0) / 30.0 * 0.5
+	else:
+		# 70 → 100 : 0.5 → 1
+		return 0.5 + (percent - 70.0) / 30.0 * 0.5
+
 
 func update_drunk_state() -> void:
-	# Inversion UNIQUEMENT en forêt quand alcool = 100%
-	if meter_mode == MeterMode.ALCOHOL and alc >= alc_max:
-		controls_inverted = true
-	else:
-		controls_inverted = false
+	# Inversion jusqu'à 80%
+	controls_inverted = (meter_mode == MeterMode.ALCOHOL and alc >= int(alc_max * 0.8))
+
+	# Caméra active seulement au-dessus de 40%
+	var intensity := get_drunk_intensity()
+	set_drunk_effect(intensity > 0.0)
+
 
 func drink_beer(amount: int) -> void:
 	# banquise: réchauffe
@@ -158,6 +178,45 @@ func eat_food(amount: int) -> void:
 
 func set_ice_control(value: float) -> void:
 	ice_control = value
+	
+
+func forest_camera_effect() -> void:
+	if not camera:
+		return
+
+	# petit décalage rapide
+	camera.offset = Vector2(20, 0)
+
+	# retour automatique après 0.15s
+	await get_tree().create_timer(0.15).timeout
+	camera.offset = Vector2.ZERO
+
+func set_drunk_effect(active: bool) -> void:
+	drunk_active = active
+	if not drunk_active:
+		# reset propre
+		$Camera2D.offset = Vector2.ZERO
+		drunk_t = 0.0
+
+
+func _apply_drunk_camera(delta: float) -> void:
+	var intensity := get_drunk_intensity()
+	if intensity <= 0.0:
+		$Camera2D.offset = $Camera2D.offset.lerp(Vector2.ZERO, delta * 8.0)
+		drunk_t = 0.0
+		return
+
+	drunk_t += delta * 6.0
+
+	var x_amp := 30.0 * intensity
+	var y_amp := 12.0 * intensity
+
+	$Camera2D.offset.x = sin(drunk_t) * x_amp
+	$Camera2D.offset.y = cos(drunk_t * 0.8) * y_amp
+
+
+func _process(delta: float) -> void:
+	_apply_drunk_camera(delta)
 
 
 # ----------------------------------------
