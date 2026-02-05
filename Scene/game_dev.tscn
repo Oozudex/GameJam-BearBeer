@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://cvysdv60nwq0v"]
+[gd_scene load_steps=96 format=3 uid="uid://cvysdv60nwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://3dosof7q5n0i" path="res://assets/Tilemap/plateforme bas.png" id="1_aq2kk"]
 [ext_resource type="Texture2D" uid="uid://bjdej1ty16al5" path="res://assets/Tilemap/banquise.png" id="1_fwfla"]
@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://cb7vf4d1li1v0" path="res://Scene/honey_pickup.tscn" id="53_6r2jl"]
 [ext_resource type="PackedScene" uid="uid://cq58mr0t1n568" path="res://Scene/food_pickup.tscn" id="54_pvami"]
 [ext_resource type="PackedScene" uid="uid://defhnflcch1or" path="res://Scene/bee.tscn" id="55_u8p4b"]
+[ext_resource type="PackedScene" uid="uid://dwbjkpoh3swxs" path="res://Scene/golden_ticket.tscn" id="56_rgs4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k6h6g"]
 texture = ExtResource("1_aq2kk")
@@ -789,5 +790,8 @@ position = Vector2(5942, -289)
 
 [node name="Bee6" parent="." instance=ExtResource("55_u8p4b")]
 position = Vector2(7296, -163)
+
+[node name="GoldenTicket" parent="." instance=ExtResource("56_rgs4t")]
+position = Vector2(2585, 70)
 
 [connection signal="timeout" from="Player/ColdTimer" to="Player" method="_on_cold_timer_timeout"]
