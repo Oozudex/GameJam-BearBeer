@@ -647,7 +647,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="ColdTimer" type="Timer" parent="Player"]
-wait_time = 2.5
+wait_time = 3.0
 autostart = true
 
 [node name="Hearts" type="CanvasLayer" parent="."]
