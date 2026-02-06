@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhov70i5uxr83"]
+[gd_scene load_steps=8 format=3 uid="uid://bhov70i5uxr83"]
 
 [ext_resource type="Script" uid="uid://b0d76qy33pa1x" path="res://scripts/win_ticket.gd" id="1_et5qs"]
 [ext_resource type="Texture2D" uid="uid://dm3od6js12w0e" path="res://assets/victoire_legendaire_bg.jpg" id="2_tcy5x"]
+[ext_resource type="AudioStream" uid="uid://dxdddrar1y8fu" path="res://audio/u_ss015dykrt-brass-fanfare-with-timpani-and-winchimes-reverberated-146260.mp3" id="3_4tosi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp73n"]
 bg_color = Color(11.708403, 11.708403, 11.708403, 1)
@@ -115,6 +116,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_et5qs")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tcy5x")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4tosi")
 text = "Menu principal"
+
+[node name="WinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4tosi")
 
 [connection signal="pressed" from="Overlay/Center/VBoxContainer2/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="Overlay/Center/VBoxContainer2/MenuButton" to="." method="_on_menu_button_pressed"]

@@ -20,7 +20,7 @@ func _ready() -> void:
 	# Réglages audio "safe" (tu peux ajuster après)
 	if step_sfx:
 		step_sfx.autoplay = false
-		step_sfx.volume_db = 0.0
+		step_sfx.volume_db = 10.0
 		step_sfx.max_distance = 2000.0
 		step_sfx.attenuation = 1.0
 

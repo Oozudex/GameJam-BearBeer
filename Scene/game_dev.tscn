@@ -572,7 +572,7 @@ texture = ExtResource("41_lr58w")
 
 [node name="Player" parent="." node_paths=PackedStringArray("temperature_ui") instance=ExtResource("5_crvqk")]
 light_mask = 2
-position = Vector2(5.000002, -2)
+position = Vector2(14.000002, -1.9073486e-06)
 scale = Vector2(1.5199995, 1.5199995)
 temperature_ui = NodePath("../HUD/Root/Panel/HBoxContainer/TemperatureUI")
 
@@ -666,7 +666,8 @@ position = Vector2(7494, -9.000001)
 scale = Vector2(173.44614, 46.226166)
 
 [node name="EndZone" parent="." instance=ExtResource("49_ky34d")]
-position = Vector2(9117, 108)
+position = Vector2(9117, 72.00001)
+scale = Vector2(5.154898, 5.720002)
 
 [node name="Beer" parent="." instance=ExtResource("50_6qed2")]
 position = Vector2(640, -161)
