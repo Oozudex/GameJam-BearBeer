@@ -16,7 +16,7 @@ func _ready() -> void:
 func _on_retry_button_pressed() -> void:
 	get_tree().paused = false
 	GameState.reset_run()
-	get_tree().change_scene_to_file("res://Scene/game.tscn") # adapte
+	get_tree().change_scene_to_file("res://Scene/game_dev.tscn") # adapte
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
