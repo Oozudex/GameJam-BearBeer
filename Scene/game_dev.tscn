@@ -796,6 +796,12 @@ position = Vector2(7354, -114)
 [node name="FoodPickup6" parent="." instance=ExtResource("54_pvami")]
 position = Vector2(6936, -340)
 
+[node name="FoodPickup7" parent="." instance=ExtResource("54_pvami")]
+position = Vector2(7847, 300)
+
+[node name="FoodPickup8" parent="." instance=ExtResource("54_pvami")]
+position = Vector2(6628, 41)
+
 [node name="Bee" parent="." instance=ExtResource("55_u8p4b")]
 position = Vector2(8843, 98)
 
