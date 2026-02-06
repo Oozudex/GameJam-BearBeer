@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://cvysdv60nwq0v"]
+[gd_scene load_steps=99 format=3 uid="uid://cvysdv60nwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://3dosof7q5n0i" path="res://assets/Tilemap/plateforme bas.png" id="1_aq2kk"]
 [ext_resource type="Texture2D" uid="uid://bjdej1ty16al5" path="res://assets/Tilemap/banquise.png" id="1_fwfla"]
@@ -43,8 +43,11 @@
 [ext_resource type="Texture2D" uid="uid://bkqnaissnnwsg" path="res://assets/Back3.png" id="41_lr58w"]
 [ext_resource type="Script" uid="uid://dl62umvsbhmh5" path="res://scripts/hearts.gd" id="42_xwp0c"]
 [ext_resource type="Script" uid="uid://cs14bs37i4bjf" path="res://scripts/hud.gd" id="43_abuxc"]
+[ext_resource type="Script" uid="uid://c5l4ac7841rgj" path="res://scripts/hearts_ui.gd" id="43_h7r64"]
 [ext_resource type="PackedScene" uid="uid://ci7qrvjk3wbf8" path="res://Scene/temperature_ui.tscn" id="44_2sf4w"]
+[ext_resource type="Texture2D" uid="uid://b3dogreu7lqxh" path="res://assets/ui/heart/heart_full.png" id="44_5ug0v"]
 [ext_resource type="Texture2D" uid="uid://ddnilmlniw20w" path="res://assets/inventaire_ticket.png" id="45_02l3n"]
+[ext_resource type="Texture2D" uid="uid://dx4ustgi1a604" path="res://assets/ui/heart/heart_empty.png" id="45_hijwq"]
 [ext_resource type="PackedScene" uid="uid://cueektpecd8pq" path="res://Scene/inventory_honey.tscn" id="46_ky34d"]
 [ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="47_2sf4w"]
 [ext_resource type="PackedScene" uid="uid://dbt71dh3jxfub" path="res://Scene/forest_zone.tscn" id="48_02l3n"]
@@ -589,17 +592,38 @@ autostart = true
 [node name="Hearts" type="CanvasLayer" parent="."]
 script = ExtResource("42_xwp0c")
 
-[node name="HeartsLabel" type="Label" parent="Hearts"]
+[node name="HeartsUI" type="HBoxContainer" parent="Hearts"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
+offset_left = -52.0
+offset_top = -40.0
+offset_right = 52.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("43_h7r64")
+full_heart = ExtResource("44_5ug0v")
+empty_heart = ExtResource("45_hijwq")
+
+[node name="Heart1" type="TextureRect" parent="Hearts/HeartsUI"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="Hearts/HeartsUI"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="Hearts/HeartsUI"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("43_abuxc")

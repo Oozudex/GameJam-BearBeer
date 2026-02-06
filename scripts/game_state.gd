@@ -28,7 +28,17 @@ func add_ticket() -> void:
 	has_golden_ticket = true
 
 func lose_life() -> void:
-	lives = max(lives - 1, 0)
+	lives -= 1
+	if lives < 0:
+		lives = 0
+
+	# Cherche le HUD dans la scène courante
+	var scene := get_tree().current_scene
+	if scene:
+		var hearts_ui = scene.find_child("HeartsUI", true, false)
+		if hearts_ui and hearts_ui.has_method("set_lives"):
+			hearts_ui.set_lives(lives)
+
 
 func is_game_over() -> bool:
 	return lives <= 0
