@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://cvysdv60nwq0v"]
+[gd_scene load_steps=98 format=3 uid="uid://cvysdv60nwq0v"]
 
 [ext_resource type="Texture2D" uid="uid://3dosof7q5n0i" path="res://assets/Tilemap/plateforme bas.png" id="1_aq2kk"]
 [ext_resource type="Texture2D" uid="uid://bjdej1ty16al5" path="res://assets/Tilemap/banquise.png" id="1_fwfla"]
@@ -41,7 +41,6 @@
 [ext_resource type="Texture2D" uid="uid://drhuqtavthbo5" path="res://assets/Back1.png" id="39_ox58s"]
 [ext_resource type="Texture2D" uid="uid://b3rati204j0c2" path="res://assets/Back2.png" id="40_xwp0c"]
 [ext_resource type="Texture2D" uid="uid://bkqnaissnnwsg" path="res://assets/Back3.png" id="41_lr58w"]
-[ext_resource type="Script" uid="uid://dl62umvsbhmh5" path="res://scripts/hearts.gd" id="42_xwp0c"]
 [ext_resource type="Script" uid="uid://cs14bs37i4bjf" path="res://scripts/hud.gd" id="43_abuxc"]
 [ext_resource type="Script" uid="uid://c5l4ac7841rgj" path="res://scripts/hearts_ui.gd" id="43_h7r64"]
 [ext_resource type="PackedScene" uid="uid://ci7qrvjk3wbf8" path="res://Scene/temperature_ui.tscn" id="44_2sf4w"]
@@ -590,7 +589,6 @@ wait_time = 2.5
 autostart = true
 
 [node name="Hearts" type="CanvasLayer" parent="."]
-script = ExtResource("42_xwp0c")
 
 [node name="HeartsUI" type="HBoxContainer" parent="Hearts"]
 anchors_preset = 7
