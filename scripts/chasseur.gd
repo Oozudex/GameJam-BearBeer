@@ -6,48 +6,56 @@ var direction := 1
 @onready var ray_cast_l: RayCast2D = $RayCastL
 @onready var ray_cast_r: RayCast2D = $RayCastR
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
-@export var sfx_distance: float = 200.0
 @onready var step_sfx: AudioStreamPlayer2D = $StepSFX
 
-var player: Node2D = null
+@export var sfx_distance: float = 150.0
+@export var sfx_cooldown: float = 1.5
 
+var player: Node2D = null
+var sfx_timer: float = 0.0
+var was_in_range: bool = false
 
 func _ready() -> void:
-	# Recherche robuste du Player (fonctionne même si la scène s'appelle GameDev)
-	player = get_tree().root.find_child("Player", true, false) as Node2D
-
-	# Réglages audio "safe" (tu peux ajuster après)
-	if step_sfx:
-		step_sfx.autoplay = false
-		step_sfx.volume_db = 10.0
-		step_sfx.max_distance = 2000.0
-		step_sfx.attenuation = 1.0
-
+	# Trouver le player (majuscule/minuscule)
+	player = get_tree().current_scene.find_child("Player", true, false) as Node2D
+	if not player:
+		player = get_tree().current_scene.find_child("player", true, false) as Node2D
 
 func _physics_process(delta: float) -> void:
-	# IMPORTANT: pas de elif (comme ton script qui marchait)
 	if ray_cast_r.is_colliding():
 		direction = -1
 		animated_sprite_2d.flip_h = true
-
-	if ray_cast_l.is_colliding():
+	elif ray_cast_l.is_colliding():
 		direction = 1
 		animated_sprite_2d.flip_h = false
 
 	position.x += direction * SPEED * delta
-
 
 func _process(_delta: float) -> void:
 	if not player or not step_sfx:
 		return
 
 	var dist := global_position.distance_to(player.global_position)
+	var in_range := dist <= sfx_distance
 
-	# Play / Stop direct (pas de fondu)
-	if dist <= sfx_distance:
-		if not step_sfx.playing:
-			step_sfx.play()
-	else:
-		if step_sfx.playing:
-			step_sfx.stop()
+	# Entrée dans la zone -> play 1 fois
+	if in_range and not was_in_range:
+		step_sfx.play()
+
+	was_in_range = in_range
+
+	# On entre dans la zone -> on joue une fois direct
+	if in_range and not was_in_range:
+		step_sfx.play()
+		sfx_timer = sfx_cooldown
+
+	# On reste dans la zone -> rejoue toutes les X secondes
+	if in_range and sfx_timer <= 0.0:
+		step_sfx.play()
+		sfx_timer = sfx_cooldown
+
+	# On sort -> on ne stop pas, on reset juste l'état
+	if not in_range and was_in_range:
+		sfx_timer = 0.0
+
+	was_in_range = in_range

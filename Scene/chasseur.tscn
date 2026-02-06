@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b7jhtq1jqppwv" path="res://scripts/chasseur.gd" id="1_os35l"]
 [ext_resource type="Texture2D" uid="uid://beifrviwaujax" path="res://assets/animations/anim_chasseur.png" id="1_wf06l"]
 [ext_resource type="PackedScene" uid="uid://bnjx8evuurdtc" path="res://Scene/killzone.tscn" id="2_os35l"]
-[ext_resource type="AudioStream" uid="uid://bb1sxs2pwskjs" path="res://audio/cunours.mp3" id="4_t2e6w"]
+[ext_resource type="AudioStream" uid="uid://8wghsxnh5krr" path="res://audio/cunours_update.mp3" id="4_t2e6w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2e6w"]
 atlas = ExtResource("1_wf06l")
@@ -58,4 +58,5 @@ shape = SubResource("CapsuleShape2D_d8nun")
 
 [node name="StepSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_t2e6w")
-max_distance = 1.0
+volume_db = 10.0
+max_distance = 300.0
